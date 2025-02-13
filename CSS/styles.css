@@ -1,0 +1,71 @@
+/*Fonts*/
+.doto-font {
+    font-family: "Doto", serif;
+    font-optical-sizing: auto;
+    font-weight: 900;
+    font-style: normal;
+    font-variation-settings: "ROND" 20;
+}
+
+
+body {
+    background-color: black;
+    color: limegreen;
+    font-family: "Doto", monospace;
+    padding: 20px;
+    margin: 0;
+}
+
+/*Input Fields*/
+
+#input-container {
+    display: none;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#prompt {
+    color: limegreen;
+    font-family: "Doto", monospace;
+    padding-right: 5px;
+}
+
+#input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: yellow;
+    font-family: "Doto", monospace;
+}
+
+#input::placeholder {
+    color: limegreen;
+}
+
+#input:focus {
+    outline: none;
+}
+
+/*Old Input fields*/
+
+.old-input-container {
+    display: none;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.old-prompt {
+    color: limegreen;
+    font-family: "Doto", monospace;
+    padding-right: 5px;
+}
+
+.old-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: yellow;
+    font-family: "Doto", monospace;
+}
