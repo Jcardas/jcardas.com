@@ -1,3 +1,14 @@
+const bootText = [
+    "    _                       _",
+    "   (_)                     | |",
+    "    _   ___  __ _  _ __  __| |  __ _  ___        ___  ___   _ __ ___",
+    "   | | / __|/ _` || '__|/ _` | / _` |/ __|      / __|/ _ \\ | '_ ` _ \\",
+    "   | || (__| (_| || |  | (_| || (_| |\\__ \\  _  | (__| (_) || | | | | |",
+    "   | | \\___|\\__,_||_|   \\__,_| \\__,_||___/ (_)  \\___|\\___/ |_| |_| |_|",
+    "  _/ |",
+    " |__/"
+];
+
 const initializerDiv = document.getElementById("initializer");
 
 let inputField = document.getElementById("input");
@@ -23,14 +34,16 @@ function runBootSequence() {
     if (i < bootSequence.length) {
         printToInitializer(bootSequence[i]);
         i++;
-        setTimeout(runBootSequence, 100); // Adjust delay between messages
+        setTimeout(runBootSequence, 200); // Adjust delay between messages
     } else {
+        // setTimeout(bootSplash, 100);
         inputContainer.style.display = "flex";
         inputField.focus();
     }
 }
 
 runBootSequence();
+displayBootSplash();
 
 // Console functionality
 let consoleCounter = 1; // Initialize a counter for console divs
@@ -154,8 +167,6 @@ function activateCheeboMode() {
 }
 
 
-
-
 function clear() {
     // Remove all previous console output and input fields
     document.querySelectorAll(".console, .old-input-container, #input-container").forEach(el => el.remove());
@@ -195,6 +206,35 @@ function clear() {
 
     // Focus the new input field
     newInputField.focus();
+}
+
+
+// Boot Sequence
+
+function displayBootSplash() {
+    let i = 0;  // Tracks the current line
+    let j = 0;  // Tracks the current character in the line
+    const preElement = document.getElementById('boot-splash-text');
+
+
+    function revealLine() {
+        if (i < bootText.length) {
+            if (j < bootText[i].length) {
+                // Add one character at a time from the current line
+                preElement.textContent += bootText[i].charAt(j);
+                j++; // Move to the next character
+                setTimeout(revealLine, 5); // Reveal a character every 5ms
+            } else {
+                // Once a line is complete, move to the next line
+                preElement.textContent += '\n'; // Add a line break
+                i++; // Move to the next line
+                j = 0; // Reset character counter for the next line
+                setTimeout(revealLine, 5); // start the next line after a 5ms delay
+            }
+        }
+    }
+
+    revealLine();
 }
 
 

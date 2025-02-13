@@ -1,10 +1,8 @@
 /*Fonts*/
 .doto-font {
     font-family: "Doto", serif;
-    font-optical-sizing: auto;
     font-weight: 900;
     font-style: normal;
-    font-variation-settings: "ROND" 20;
 }
 
 
@@ -37,6 +35,7 @@ body {
     border: none;
     color: yellow;
     font-family: "Doto", monospace;
+    font-size: medium;
 }
 
 #input::placeholder {
@@ -68,4 +67,5 @@ body {
     border: none;
     color: yellow;
     font-family: "Doto", monospace;
+    font-size: medium;
 }
