@@ -17,7 +17,7 @@ const inputContainer = document.getElementById("input-container");
 
 const bootSequence = [
     "Initializing System...",
-    "Cortexing Flux Cores",
+    "Cortexing Flux Cores...",
     "Loading Kernel Modules...",
     "Defibriling Transistor Modules...",
     "Deleting Cache...",
