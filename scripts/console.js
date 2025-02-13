@@ -54,8 +54,7 @@ inputField.addEventListener("keypress", function (event) {
         let command = inputField.value.toLowerCase().trim(); // send the inputted string to the processCommand()
         processCommand(command);
 
-        if (command !== "clear")
-        {
+        if (command !== "clear") {
             // After the command is processed, initialize a new input field again
             initializeNewInputField();
         }
@@ -101,8 +100,7 @@ function initializeNewInputField() {
             let command = newInputField.value.toLowerCase().trim(); // send the inputted string to processCommand()
             processCommand(command);
 
-            if (command !== "clear")
-            {
+            if (command !== "clear") {
                 // After the command is processed, initialize a new input field again
                 initializeNewInputField();
             }
@@ -127,14 +125,35 @@ function processCommand(command) {
     } else if (command === "help") {
         printToConsole("Available commands: start, hello, projects, help, clear");
     } else if (command === "clear") {
-
         clear();
+    } else if (command == "cheebo") {
 
+        activateCheeboMode()
 
     } else {
         printToConsole("Unknown command. Type 'help' for a list of commands.");
     }
 }
+
+function activateCheeboMode() {
+    let dots = "";
+    let count = 0;
+
+    let loadingInterval = setInterval(() => {
+        dots += ".";
+        printToConsole("Activating Cheebo Mode" + dots);
+        count++;
+
+        if (count >= 3) {
+            clearInterval(loadingInterval); // Stop the interval after 3 dots
+            setTimeout(() => {
+                window.location.href = "https://cheebo.online";
+            }, 5000); // Small delay before redirecting
+        }
+    }, 200); // Adds a dot every 0.5 seconds
+}
+
+
 
 
 function clear() {
@@ -167,8 +186,7 @@ function clear() {
             let command = newInputField.value.toLowerCase().trim(); // send the inputted string to processCommand()
             processCommand(command);
 
-            if (command !== "clear")
-            {
+            if (command !== "clear") {
                 // After the command is processed, initialize a new input field again
                 initializeNewInputField();
             }
