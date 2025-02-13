@@ -69,3 +69,18 @@ body {
     font-family: "Doto", monospace;
     font-size: medium;
 }
+
+
+/*Canvas for boot splash*/
+
+#c
+{
+    position: absolute;
+    z-index: -1;
+}
+
+/*Boot splash text*/
+
+#boot-splash{
+    color: limegreen;
+}

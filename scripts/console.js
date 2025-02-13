@@ -9,6 +9,7 @@ const bootText = [
     " |__/"
 ];
 
+
 const initializerDiv = document.getElementById("initializer");
 
 let inputField = document.getElementById("input");
@@ -16,10 +17,18 @@ const inputContainer = document.getElementById("input-container");
 
 const bootSequence = [
     "Initializing System...",
+    "Cortexing Flux Cores",
     "Loading Kernel Modules...",
+    "Defibriling Transistor Modules...",
+    "Deleting Cache...",
+    "ERROR: Cannot Send Data to Hackers (File Not Found: Personal_Data.txt)",
+
     "Connecting to Mainframe...",
+    "-",
+    "-",
+    "-",
     "All Systems Operational!",
-    "Type 'start' to begin or 'projects' to see a list."
+    "Type 'help' to see a list of commands."
 ];
 
 function printToInitializer(text) {
@@ -31,10 +40,12 @@ function printToInitializer(text) {
 let i = 0;
 
 function runBootSequence() {
+
     if (i < bootSequence.length) {
+
         printToInitializer(bootSequence[i]);
         i++;
-        setTimeout(runBootSequence, 200); // Adjust delay between messages
+        setInterval(runBootSequence, 1500); // Adjust delay between messages
     } else {
         // setTimeout(bootSplash, 100);
         inputContainer.style.display = "flex";
@@ -42,7 +53,6 @@ function runBootSequence() {
     }
 }
 
-runBootSequence();
 displayBootSplash();
 
 // Console functionality
@@ -126,28 +136,6 @@ function initializeNewInputField() {
 
 }
 
-function processCommand(command) {
-    printToConsole("> " + command);
-
-    if (command === "start") {
-        printToConsole("Welcome to my console! Type 'help' for available commands.");
-    } else if (command === "projects") {
-        printToConsole("1. Web Console\n2. Portfolio Website\n3. Game Dev Project");
-    } else if (command === "hello") {
-        printToConsole("Hello! :^)");
-    } else if (command === "help") {
-        printToConsole("Available commands: start, hello, projects, help, clear");
-    } else if (command === "clear") {
-        clear();
-    } else if (command == "cheebo") {
-
-        activateCheeboMode()
-
-    } else {
-        printToConsole("Unknown command. Type 'help' for a list of commands.");
-    }
-}
-
 function activateCheeboMode() {
     let dots = "";
     let count = 0;
@@ -214,12 +202,15 @@ function clear() {
 function displayBootSplash() {
     let i = 0;  // Tracks the current line
     let j = 0;  // Tracks the current character in the line
+
     const preElement = document.getElementById('boot-splash-text');
 
 
     function revealLine() {
-        if (i < bootText.length) {
-            if (j < bootText[i].length) {
+        if (i < bootText.length) //The length of the ARRAY booktext
+        {
+            if (j < bootText[i].length) // The length of the string at the position i in the booktext Array
+            {
                 // Add one character at a time from the current line
                 preElement.textContent += bootText[i].charAt(j);
                 j++; // Move to the next character
@@ -232,10 +223,84 @@ function displayBootSplash() {
                 setTimeout(revealLine, 5); // start the next line after a 5ms delay
             }
         }
-    }
 
+    }
     revealLine();
+    setInterval(runBootSequence, 2500);
 }
 
+// Matrix text (courtesy of: https://jsfiddle.net/w5wsudd0/)
+var c = document.getElementById("c");
+var ctx = c.getContext("2d");
 
+//making the canvas full screen
+c.height = 175;
+c.width = window.innerWidth;
 
+//1's and 0's
+var matrix_digits = "10";
+//converting the string into an array of single characters
+matrix_digits = matrix_digits.split("");
+
+var font_size = 10;
+var columns = c.width/font_size; //number of columns for the rain
+//an array of drops - one per column
+var drops = [];
+//x below is the x coordinate
+//1 = y co-ordinate of the drop(same for every drop initially)
+for(var x = 0; x < columns; x++)
+    drops[x] = 1;
+
+//drawing the characters
+function draw()
+{
+    //Black BG for the canvas
+    //translucent BG to show trail
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, c.width, c.height);
+
+    ctx.fillStyle = "#379115"; //green text
+    ctx.font = font_size + "px Doto";
+    //looping over drops
+    for(var i = 0; i < drops.length; i++)
+    {
+        //a random matric character to print
+        var text = matrix_digits[Math.floor(Math.random()*matrix_digits.length)];
+        //x = i*font_size, y = value of drops[i]*font_size
+        ctx.fillText(text, i*font_size, drops[i]*font_size);
+
+        //sending the drop back to the top randomly after it has crossed the screen
+        //adding a randomness to the reset to make the drops scattered on the Y axis
+        if(drops[i]*font_size > c.height && Math.random() > 0.975)
+            drops[i] = 0;
+
+        //incrementing Y coordinate
+        drops[i]++;
+    }
+}
+
+setInterval(draw, 33);
+
+// The commands
+
+function processCommand(command) {
+    printToConsole("> " + command);
+
+    if (command === "about") {
+        printToConsole("About me command.");
+    } else if (command === "projects") {
+        printToConsole("1. Web Console\n2. Portfolio Website\n3. Game Dev Project");
+    } else if (command === "hello") {
+        printToConsole("Hello! :^)");
+    } else if (command === "help") {
+        printToConsole("Available commands: about, hello, projects, help, clear");
+    } else if (command === "clear") {
+        clear();
+    } else if (command == "cheebo") {
+
+        activateCheeboMode()
+
+    } else {
+        printToConsole("Unknown command. Type 'help' for a list of commands.");
+    }
+}
