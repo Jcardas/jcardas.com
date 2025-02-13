@@ -22,7 +22,6 @@ const bootSequence = [
     "Defibriling Transistor Modules...",
     "Deleting Cache...",
     "ERROR: Cannot Send Data to Hackers (File Not Found: Personal_Data.txt)",
-
     "Connecting to Mainframe...",
     "-",
     "-",
@@ -45,7 +44,7 @@ function runBootSequence() {
 
         printToInitializer(bootSequence[i]);
         i++;
-        setInterval(runBootSequence, 1500); // Adjust delay between messages
+        setInterval(runBootSequence, 400); // Adjust delay between messages
     } else {
         // setTimeout(bootSplash, 100);
         inputContainer.style.display = "flex";
