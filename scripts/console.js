@@ -148,7 +148,7 @@ function activateCheeboMode() {
             clearInterval(loadingInterval); // Stop the interval after 3 dots
             setTimeout(() => {
                 window.location.href = "https://cheebo.online";
-            }, 5000); // Small delay before redirecting
+            }, 1000); // Small delay before redirecting
         }
     }, 200); // Adds a dot every 0.5 seconds
 }
