@@ -23,14 +23,15 @@ const bootSequence = [
     "Deleting Cache...",
     "ERROR: Cannot Send Data to Hackers (File Not Found: Personal_Data.txt)",
     "Connecting to Mainframe...",
-    "-",
-    "-",
-    "-",
+    ".",
+    "..",
+    "...",
     "All Systems Operational!",
     "Type 'help' to see a list of commands."
 ];
 
-function printToInitializer(text) {
+function printToInitializer(text)
+{
     initializerDiv.innerHTML += text + "<br>";
     initializerDiv.scrollTop = initializerDiv.scrollHeight;
 }
@@ -38,15 +39,22 @@ function printToInitializer(text) {
 // Simulate Boot Sequence
 let i = 0;
 
-function runBootSequence() {
+function runBootSequence()
+{
+    if (localStorage.getItem("bootSequence") === "fast")
+    {
+        inputContainer.style.display = "flex";
+        inputField.focus();
+        return;
+    }
 
-    if (i < bootSequence.length) {
-
+    if (i < bootSequence.length)
+    {
         printToInitializer(bootSequence[i]);
         i++;
-        setInterval(runBootSequence, 400); // Adjust delay between messages
-    } else {
-        // setTimeout(bootSplash, 100);
+        setTimeout(runBootSequence, 100); // Adjust delay between messages
+    } else
+    {
         inputContainer.style.display = "flex";
         inputField.focus();
     }
@@ -57,7 +65,8 @@ displayBootSplash();
 // Console functionality
 let consoleCounter = 1; // Initialize a counter for console divs
 
-function printToConsole(text) {
+function printToConsole(text)
+{
     let consoleDiv = document.createElement("div");
 
     // Set the unique ID for each console div
@@ -71,19 +80,23 @@ function printToConsole(text) {
     document.body.appendChild(consoleDiv);  // Append the new console div to the body or the desired container
 }
 
-inputField.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
+inputField.addEventListener("keypress", function (event)
+{
+    if (event.key === "Enter")
+    {
         let command = inputField.value.toLowerCase().trim(); // send the inputted string to the processCommand()
         processCommand(command);
 
-        if (command !== "clear") {
+        if (command !== "clear")
+        {
             // After the command is processed, initialize a new input field again
             initializeNewInputField();
         }
     }
 });
 
-function initializeNewInputField() {
+function initializeNewInputField()
+{
 
     let oldInputContainer = document.getElementById("input-container"); // get the old input div
 
@@ -117,12 +130,15 @@ function initializeNewInputField() {
     // Now we attach the event listener to the new input field
     let newInputField = newInputContainer.querySelector("input");
 
-    newInputField.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
+    newInputField.addEventListener("keypress", function (event)
+    {
+        if (event.key === "Enter")
+        {
             let command = newInputField.value.toLowerCase().trim(); // send the inputted string to processCommand()
             processCommand(command);
 
-            if (command !== "clear") {
+            if (command !== "clear")
+            {
                 // After the command is processed, initialize a new input field again
                 initializeNewInputField();
             }
@@ -135,18 +151,22 @@ function initializeNewInputField() {
 
 }
 
-function activateCheeboMode() {
+function activateCheeboMode()
+{
     let dots = "";
     let count = 0;
 
-    let loadingInterval = setInterval(() => {
+    let loadingInterval = setInterval(() =>
+    {
         dots += ".";
         printToConsole("Activating Cheebo Mode" + dots);
         count++;
 
-        if (count >= 3) {
+        if (count >= 3)
+        {
             clearInterval(loadingInterval); // Stop the interval after 3 dots
-            setTimeout(() => {
+            setTimeout(() =>
+            {
                 window.location.href = "https://cheebo.online";
             }, 1000); // Small delay before redirecting
         }
@@ -154,9 +174,10 @@ function activateCheeboMode() {
 }
 
 
-function clear() {
+function clear()
+{
     // Remove all previous console output and input fields
-    document.querySelectorAll(".console, .old-input-container, #input-container").forEach(el => el.remove());
+    document.querySelectorAll(".new, .console, .old-input-container, #input-container").forEach(el => el.remove());
 
     // Manually create a new input container instead of cloning
     let newInputContainer = document.createElement("div");
@@ -179,12 +200,15 @@ function clear() {
     document.body.appendChild(newInputContainer);
 
     // Now we attach the event listener to the new input field
-    newInputField.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
+    newInputField.addEventListener("keypress", function (event)
+    {
+        if (event.key === "Enter")
+        {
             let command = newInputField.value.toLowerCase().trim(); // send the inputted string to processCommand()
             processCommand(command);
 
-            if (command !== "clear") {
+            if (command !== "clear")
+            {
                 // After the command is processed, initialize a new input field again
                 initializeNewInputField();
             }
@@ -198,14 +222,16 @@ function clear() {
 
 // Boot Sequence
 
-function displayBootSplash() {
+function displayBootSplash()
+{
     let i = 0;  // Tracks the current line
     let j = 0;  // Tracks the current character in the line
 
     const preElement = document.getElementById('boot-splash-text');
 
 
-    function revealLine() {
+    function revealLines()
+    {
         if (i < bootText.length) //The length of the ARRAY booktext
         {
             if (j < bootText[i].length) // The length of the string at the position i in the booktext Array
@@ -213,19 +239,35 @@ function displayBootSplash() {
                 // Add one character at a time from the current line
                 preElement.textContent += bootText[i].charAt(j);
                 j++; // Move to the next character
-                setTimeout(revealLine, 5); // Reveal a character every 5ms
-            } else {
+                setTimeout(revealLines, 5); // Reveal a character every 5ms
+            } else
+            {
                 // Once a line is complete, move to the next line
                 preElement.textContent += '\n'; // Add a line break
                 i++; // Move to the next line
                 j = 0; // Reset character counter for the next line
-                setTimeout(revealLine, 5); // start the next line after a 5ms delay
+                setTimeout(revealLines, 5); // start the next line after a 5ms delay
             }
         }
-
     }
-    revealLine();
-    setInterval(runBootSequence, 2500);
+
+    function fastReveal()
+    {
+        bootText.forEach(line => {
+            preElement.textContent += line + "\n"; // Add the line and a newline for each string
+        });
+    }
+
+    if (localStorage.getItem("bootSequence") === "fast")
+    {
+        fastReveal();
+        runBootSequence();
+    }
+    if (localStorage.getItem("bootSequence") === "default")
+    {
+        revealLines();
+        setTimeout(runBootSequence, 2000);
+    }
 }
 
 // Matrix text (courtesy of: https://jsfiddle.net/w5wsudd0/)
@@ -242,12 +284,12 @@ var matrix_digits = "10";
 matrix_digits = matrix_digits.split("");
 
 var font_size = 10;
-var columns = c.width/font_size; //number of columns for the rain
+var columns = c.width / font_size; //number of columns for the rain
 //an array of drops - one per column
 var drops = [];
 //x below is the x coordinate
 //1 = y co-ordinate of the drop(same for every drop initially)
-for(var x = 0; x < columns; x++)
+for (var x = 0; x < columns; x++)
     drops[x] = 1;
 
 //drawing the characters
@@ -261,16 +303,16 @@ function draw()
     ctx.fillStyle = "#379115"; //green text
     ctx.font = font_size + "px Doto";
     //looping over drops
-    for(var i = 0; i < drops.length; i++)
+    for (var i = 0; i < drops.length; i++)
     {
         //a random matric character to print
-        var text = matrix_digits[Math.floor(Math.random()*matrix_digits.length)];
+        var text = matrix_digits[Math.floor(Math.random() * matrix_digits.length)];
         //x = i*font_size, y = value of drops[i]*font_size
-        ctx.fillText(text, i*font_size, drops[i]*font_size);
+        ctx.fillText(text, i * font_size, drops[i] * font_size);
 
         //sending the drop back to the top randomly after it has crossed the screen
         //adding a randomness to the reset to make the drops scattered on the Y axis
-        if(drops[i]*font_size > c.height && Math.random() > 0.975)
+        if (drops[i] * font_size > c.height && Math.random() > 0.975)
             drops[i] = 0;
 
         //incrementing Y coordinate
@@ -282,24 +324,75 @@ setInterval(draw, 33);
 
 // The commands
 
+let bootMode = null; // Track if the user is in "boot" mode
+
 function processCommand(command) {
     printToConsole("> " + command);
 
-    if (command === "about") {
-        printToConsole("About me command.");
-    } else if (command === "projects") {
-        printToConsole("1. Web Console\n2. Portfolio Website\n3. Game Dev Project");
-    } else if (command === "hello") {
-        printToConsole("Hello! :^)");
-    } else if (command === "help") {
-        printToConsole("Available commands: about, hello, projects, help, clear");
-    } else if (command === "clear") {
-        clear();
-    } else if (command == "cheebo") {
+    if (bootMode) {
+        if (command === "default") {
+            if (localStorage.getItem("bootSequence") === "default") {
+                printToConsole("Boot mode is already default.");
+            } else {
+                printToConsole("Set boot mode to default.");
+                localStorage.setItem("bootSequence", "default");
+            }
+        } else if (command === "fast") {
+            printToConsole("Set boot mode to fast.");
+            localStorage.setItem("bootSequence", "fast");
+        } else {
+            printToConsole("Invalid option. Type 'default' or 'fast'.");
+            return; // Stay in boot mode
+        }
+        bootMode = null; // Exit boot mode
+        return;
+    }
 
-        activateCheeboMode()
+    switch (command) {
+        case "about":
+            printToConsole("Hi I'm Justin!");
+            break;
 
-    } else {
-        printToConsole("Unknown command. Type 'help' for a list of commands.");
+        case "projects":
+            printToConsole("1. Web Console\n2. Portfolio Website\n3. Game Dev Project");
+            break;
+
+        case "hello":
+            printToConsole("Hello! :^)");
+            break;
+
+        case "help":
+            printToConsole("Available commands: about, hello, projects, help, clear, boot, reload");
+            break;
+
+        case "clear":
+            clear();
+            break;
+
+        case "boot":
+            // Show current boot mode if no additional input is provided
+            printToConsole("Boot mode is currently: [" + localStorage.getItem("bootSequence") +
+                "]<br>Type 'boot fast' to set to fast or 'boot default' to set to default.");
+            break;
+
+        case "boot fast":
+            // Change boot mode to fast
+            printToConsole("Set boot mode to fast.");
+            localStorage.setItem("bootSequence", "fast");
+            break;
+
+        case "boot default":
+            // Change boot mode to default
+            printToConsole("Set boot mode to default.");
+            localStorage.setItem("bootSequence", "default");
+            break;
+
+        case "reload":
+            window.location.reload();
+            break;
+
+        default:
+            printToConsole("Unknown command. Type 'help' for a list of commands.");
+            break;
     }
 }
