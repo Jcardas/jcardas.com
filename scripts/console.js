@@ -370,6 +370,10 @@ function processCommand(command) {
             break;
 
         case "boot":
+            if (!localStorage.getItem("bootSequence"))
+            {
+                localStorage.setItem("bootSequence", "default");
+            }
             // Show current boot mode if no additional input is provided
             printToConsole("Boot mode is currently: [" + localStorage.getItem("bootSequence") +
                 "]<br>Type 'boot fast' to set to fast or 'boot default' to set to default.");
@@ -389,6 +393,10 @@ function processCommand(command) {
 
         case "reload":
             window.location.reload();
+            break;
+
+        case "cheebo":
+            activateCheeboMode();
             break;
 
         default:
