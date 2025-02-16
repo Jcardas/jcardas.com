@@ -263,7 +263,7 @@ function displayBootSplash()
         fastReveal();
         runBootSequence();
     }
-    if (localStorage.getItem("bootSequence") === "default")
+    if (localStorage.getItem("bootSequence") === "default" || !localStorage.getItem("bootSequence"))
     {
         revealLines();
         setTimeout(runBootSequence, 2000);
