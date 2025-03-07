@@ -354,7 +354,7 @@ function processCommand(command) {
             break;
 
         case "projects":
-            printToConsole("1. Web Console\n2. Portfolio Website\n3. Game Dev Project");
+            printToConsole("Still WIP. Check back later!");
             break;
 
         case "hello":
