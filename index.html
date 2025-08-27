@@ -18,7 +18,6 @@
           <a href="#" class="hover:text-fuchsia-600">Home</a>
           <a href="blog.html" class="hover:text-fuchsia-600">Blog</a>
           <a href="#" class="hover:text-fuchsia-600">About</a>
-          <a href="#" class="hover:text-fuchsia-600">Contact</a>
           <a href="#" class="hover:text-fuchsia-600">Projects</a>
         </nav>
       </div>
@@ -31,7 +30,7 @@
           <!-- Gradient glow behind content -->
           <div
             aria-hidden="true"
-            class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-pink-600 to-sky-400 opacity-40 blur-3xl"
+            class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-pink-600 to-sky-400 opacity-40 blur-2xl"
           ></div>
           <div
             aria-hidden="true"
@@ -55,8 +54,13 @@
               class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
             >
               <div
-                class="bg-gray-600 h-2.5 rounded-full dark:bg-gray-300"
-                style="width: 75%"
+                class="progress-bar bg-gray-600 h-2.5 rounded-full dark:bg-gray-300 transition-all duration-1000 ease-out"
+                data-target="75"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                style="width: 0%"
               ></div>
             </div>
 
@@ -72,8 +76,13 @@
               class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
             >
               <div
-                class="bg-red-600 h-2.5 rounded-full"
-                style="width: 70%"
+                class="progress-bar bg-red-600 h-2.5 rounded-full transition-all duration-1000 ease-out"
+                data-target="70"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                style="width: 0%"
               ></div>
             </div>
 
@@ -86,8 +95,13 @@
               class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
             >
               <div
-                class="bg-blue-600 h-2.5 rounded-full"
-                style="width: 30%"
+                class="progress-bar bg-blue-600 h-2.5 rounded-full transition-all duration-1000 ease-out"
+                data-target="30"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                style="width: 0%"
               ></div>
             </div>
 
@@ -100,8 +114,13 @@
               class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
             >
               <div
-                class="bg-yellow-400 h-2.5 rounded-full"
-                style="width: 40%"
+                class="progress-bar bg-yellow-400 h-2.5 rounded-full transition-all duration-1000 ease-out"
+                data-target="40"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+                style="width: 0%"
               ></div>
             </div>
           </div>
@@ -220,5 +239,6 @@
         <a href="#" class="text-white hover:text-blue-600">LinkedIn</a>
       </div>
     </footer>
+    <script src="scripts/progress_bars.js"></script>
   </body>
 </html>
