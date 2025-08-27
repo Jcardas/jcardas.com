@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Justin Cardas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-zinc-900 text-white">
+    <!-- Header -->
+    <header class="bg-transparent shadow">
+      <div
+        class="container mx-auto flex justify-between items-center py-4 px-6"
+      >
+        <h1 class="text-2xl font-bold text-white">Justin Cardas</h1>
+        <nav class="space-x-6 text-white">
+          <a href="#" class="hover:text-fuchsia-600">Home</a>
+          <a href="#" class="hover:text-fuchsia-600">Blog</a>
+          <a href="#" class="hover:text-fuchsia-600">About</a>
+          <a href="#" class="hover:text-fuchsia-600">Contact</a>
+          <a href="#" class="hover:text-fuchsia-600">Projects</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-none py-20">
+      <div class="container mx-auto px-6">
+        <div class="relative mx-auto max-w-3xl">
+          <!-- Gradient glow behind content -->
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-sky-400 opacity-60 blur-xl"
+          ></div>
+          <!-- Semi-transparent, slightly rounded, blurred content box -->
+          <div
+            class="relative z-10 rounded-2xl bg-white/10 backdrop-blur-md ring-1 ring-white/15 text-white text-center px-8 py-10"
+          >
+            <h2 class="text-4xl font-bold mb-4">Welcome to My Website</h2>
+            <p class="text-lg mb-6">
+              Sharing stories from my develpment journey
+            </p>
+            <a
+              href="#"
+              class="bg-white text-fuchsia-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100"
+              >Read Blog</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Posts -->
+    <section class="container mx-auto py-16 px-6">
+      <h3 class="text-3xl font-bold text-center mb-10">Featured Posts</h3>
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- Post 1 -->
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+          <img src="img/Heron_3.jpg" alt="Post 1" class="rounded-t-lg" />
+          <div class="p-6">
+            <h4 class="text-xl font-semibold mb-2">Example 1</h4>
+            <p class="text-gray-600 mb-4">
+              Learn how async/await simplifies working with asynchronous code.
+            </p>
+            <a href="#" class="text-white font-medium hover:underline"
+              >Read More →</a
+            >
+          </div>
+        </div>
+        <!-- Post 2 -->
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+          <img src="img/Heron_3.jpg" alt="Post 2" class="rounded-t-lg" />
+          <div class="p-6">
+            <h4 class="text-xl font-semibold mb-2">Example 2</h4>
+            <p class="text-gray-600 mb-4">
+              Boost your productivity with these must-have VS Code extensions.
+            </p>
+            <a href="#" class="text-white font-medium hover:underline"
+              >Read More →</a
+            >
+          </div>
+        </div>
+        <!-- Post 3 -->
+        <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
+          <img src="img/Heron_3.jpg" alt="Post 3" class="rounded-t-lg" />
+          <div class="p-6">
+            <h4 class="text-xl font-semibold mb-2">Example 3</h4>
+            <p class="text-gray-600 mb-4">
+              Start designing faster and cleaner with Tailwind CSS.
+            </p>
+            <a href="#" class="text-white font-medium hover:underline"
+              >Read More →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call-to-Action -->
+    <section class="bg-none py-16 text-center">
+      <h3 class="text-2xl font-semibold mb-4">Stay Updated!</h3>
+      <p class="text-white mb-6">
+        Subscribe to get the latest posts straight to your inbox.
+      </p>
+      <form class="flex justify-center">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        />
+        <button
+          type="submit"
+          class="bg-blue-900 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700"
+        >
+          Subscribe
+        </button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-none py-6 text-center mt-10">
+      <p class="text-white">© 2025 Jcardas.com</p>
+      <div class="mt-4 space-x-4">
+        <a href="#" class="text-white hover:text-blue-600">Twitter</a>
+        <a href="#" class="text-white hover:text-blue-600">GitHub</a>
+        <a href="#" class="text-white hover:text-blue-600">LinkedIn</a>
+      </div>
+    </footer>
+  </body>
+</html>
