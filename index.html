@@ -6,16 +6,17 @@
     <title>Justin Cardas</title>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
+
   <body class="bg-zinc-900 text-white">
     <!-- Header -->
-    <header class="bg-transparent shadow">
+    <header class="bg-transparent">
       <div
         class="container mx-auto flex justify-between items-center py-4 px-6"
       >
         <h1 class="text-2xl font-bold text-white">Justin Cardas</h1>
         <nav class="space-x-6 text-white">
           <a href="#" class="hover:text-fuchsia-600">Home</a>
-          <a href="#" class="hover:text-fuchsia-600">Blog</a>
+          <a href="blog.html" class="hover:text-fuchsia-600">Blog</a>
           <a href="#" class="hover:text-fuchsia-600">About</a>
           <a href="#" class="hover:text-fuchsia-600">Contact</a>
           <a href="#" class="hover:text-fuchsia-600">Projects</a>
@@ -25,74 +26,161 @@
 
     <!-- Hero Section -->
     <section class="relative bg-none py-20">
-      <div class="container mx-auto px-6">
+      <div class="container mx-auto px-8">
         <div class="relative mx-auto max-w-3xl">
           <!-- Gradient glow behind content -->
           <div
             aria-hidden="true"
-            class="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-r from-fuchsia-600 to-sky-400 opacity-60 blur-xl"
+            class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-pink-600 to-sky-400 opacity-40 blur-3xl"
           ></div>
+          <div
+            aria-hidden="true"
+            class="absolute -inset-1 rounded-3xl opacity-80 bg-black blur-lg"
+          ></div>
+
           <!-- Semi-transparent, slightly rounded, blurred content box -->
           <div
-            class="relative z-10 rounded-2xl bg-white/10 backdrop-blur-md ring-1 ring-white/15 text-white text-center px-8 py-10"
+            class="relative z-10 rounded-3xl bg-white/10 backdrop-blur-md  text-white text-center px-8 py-10"
           >
-            <h2 class="text-4xl font-bold mb-4">Welcome to My Website</h2>
-            <p class="text-lg mb-6">
-              Sharing stories from my develpment journey
-            </p>
-            <a
-              href="#"
-              class="bg-white text-fuchsia-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-gray-100"
-              >Read Blog</a
+            <h2 class="text-4xl font-bold mb-4">Hi, I'm Justin</h2>
+            <p class="text-lg mb-6">Here's what I've been up to...</p>
+
+            <!-- Progress Bars -->
+            <h3 class="py-1 font-semibold text-left">School:</h3>
+
+            <div class="mb-1 text-base font-medium dark:text-white">
+              CST: Term 3
+            </div>
+            <div
+              class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
             >
+              <div
+                class="bg-gray-600 h-2.5 rounded-full dark:bg-gray-300"
+                style="width: 75%"
+              ></div>
+            </div>
+
+            <h3 class="py-1 pt-10 font-semibold text-left">Languages:</h3>
+
+            <!-- Languages -->
+            <div
+              class="mb-1 text-base font-medium text-red-700 dark:text-red-500"
+            >
+              Java
+            </div>
+            <div
+              class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
+            >
+              <div
+                class="bg-red-600 h-2.5 rounded-full"
+                style="width: 70%"
+              ></div>
+            </div>
+
+            <div
+              class="mb-1 text-base font-medium text-blue-700 dark:text-blue-500"
+            >
+              C
+            </div>
+            <div
+              class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
+            >
+              <div
+                class="bg-blue-600 h-2.5 rounded-full"
+                style="width: 30%"
+              ></div>
+            </div>
+
+            <div
+              class="mb-1 text-base font-medium text-yellow-400 dark:text-yellow-400"
+            >
+              Python
+            </div>
+            <div
+              class="w-full bg-gray-200 rounded-full h-2.5 mb-4 dark:bg-gray-700"
+            >
+              <div
+                class="bg-yellow-400 h-2.5 rounded-full"
+                style="width: 40%"
+              ></div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Posts -->
+    <!-- Projects -->
     <section class="container mx-auto py-16 px-6">
-      <h3 class="text-3xl font-bold text-center mb-10">Featured Posts</h3>
+      <h3 class="text-3xl font-bold text-center mb-10">What I'm Working On</h3>
       <div class="grid md:grid-cols-3 gap-8">
         <!-- Post 1 -->
-        <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
-          <img src="img/Heron_3.jpg" alt="Post 1" class="rounded-t-lg" />
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">Example 1</h4>
-            <p class="text-gray-600 mb-4">
-              Learn how async/await simplifies working with asynchronous code.
+        <article
+          class="group relative rounded-lg shadow hover:shadow-lg transition overflow-hidden aspect-square"
+        >
+          <img
+            src="img/GameDev.webp"
+            alt="Post 1"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+          ></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 text-white">
+            <h4 class="text-xl font-semibold mb-2">Game Development</h4>
+            <p class="text-white/90 mb-4">
+              Learning Unreal Engine 5 and C++ to make games.
             </p>
             <a href="#" class="text-white font-medium hover:underline"
               >Read More →</a
             >
           </div>
-        </div>
+        </article>
         <!-- Post 2 -->
-        <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
-          <img src="img/Heron_3.jpg" alt="Post 2" class="rounded-t-lg" />
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">Example 2</h4>
-            <p class="text-gray-600 mb-4">
-              Boost your productivity with these must-have VS Code extensions.
+        <article
+          class="group relative rounded-lg shadow hover:shadow-lg transition overflow-hidden aspect-square"
+        >
+          <img
+            src="img/WebDev.png"
+            alt="Post 2"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+          ></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 text-white">
+            <h4 class="text-xl font-semibold mb-2">
+              Web Development with React
+            </h4>
+            <p class="text-white/90 mb-4">
+              Learning React and TailwindCSS to make websites.
             </p>
             <a href="#" class="text-white font-medium hover:underline"
               >Read More →</a
             >
           </div>
-        </div>
+        </article>
         <!-- Post 3 -->
-        <div class="bg-white rounded-lg shadow hover:shadow-lg transition">
-          <img src="img/Heron_3.jpg" alt="Post 3" class="rounded-t-lg" />
-          <div class="p-6">
-            <h4 class="text-xl font-semibold mb-2">Example 3</h4>
-            <p class="text-gray-600 mb-4">
-              Start designing faster and cleaner with Tailwind CSS.
+        <article
+          class="group relative rounded-lg shadow hover:shadow-lg transition overflow-hidden aspect-square"
+        >
+          <img
+            src="img/MegaYveltal.png"
+            alt="Post 3"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"
+          ></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 text-white">
+            <h4 class="text-xl font-semibold mb-2">Drawing</h4>
+            <p class="text-white/90 mb-4">
+              Learning to draw and paint digitally.
             </p>
             <a href="#" class="text-white font-medium hover:underline"
               >Read More →</a
             >
           </div>
-        </div>
+        </article>
       </div>
     </section>
 
@@ -106,14 +194,20 @@
         <input
           type="email"
           placeholder="Enter your email"
-          class="px-4 py-2 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          class="text-black px-8 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
         />
-        <button
-          type="submit"
-          class="bg-blue-900 text-white px-6 py-2 rounded-r-lg hover:bg-blue-700"
-        >
-          Subscribe
-        </button>
+        <div class="relative inline-block">
+          <div
+            aria-hidden="true"
+            class="pointer-events-none absolute -inset-1 rounded-r-lg bg-gradient-to-r from-pink-600 to-sky-400 opacity-60 blur-3xl"
+          ></div>
+          <button
+            type="submit"
+            class="bg-gradient-to-r from-pink-600 to-sky-400 opacity-100 text-white px-6 py-3 rounded-r-lg hover:bg-blue-700 hover:opacity-100"
+          >
+            Subscribe
+          </button>
+        </div>
       </form>
     </section>
 
