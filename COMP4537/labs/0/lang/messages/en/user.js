@@ -1,7 +1,7 @@
-const SUCCESS_MESSAGE = "Excellent memory!"
-const FAIL_MESSAGE = "Wrong order!"
+export const SUCCESS_MESSAGE = "Excellent memory!"
+export const FAIL_MESSAGE = "Wrong order!"
 
-const OUT_OF_RANGE_ERROR = "Please enter a number between 3 and 7."
+export const OUT_OF_RANGE_ERROR = "Please enter a number between 3 and 7."
 
-const PROMPT_MESSAGE = "How many buttons to create?"
-const GO_BUTTON_MESSAGE = "Go!"
+export const PROMPT_MESSAGE = "How many buttons to create?"
+export const GO_BUTTON_MESSAGE = "Go!"
