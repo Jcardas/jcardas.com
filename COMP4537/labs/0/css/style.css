@@ -1,3 +1,8 @@
+#promptLabel {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
 .game-button {
     font-size: 1rem;
     border: 1px solid black;

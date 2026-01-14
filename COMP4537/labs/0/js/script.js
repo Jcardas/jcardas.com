@@ -5,7 +5,7 @@ import {
     OUT_OF_RANGE_ERROR,
     PROMPT_MESSAGE,
     GO_BUTTON_MESSAGE
-} from "COMP4537/labs/0/lang/messages/en/user.js"
+} from "../lang/messages/en/user.js"
 
 const BUTTON_HEIGHT = 5
 const BUTTON_WIDTH = 10
@@ -338,9 +338,11 @@ class UI
     {
         const label = document.getElementById("promptLabel");
         if (label) label.innerText = PROMPT_MESSAGE;
+        console.log(PROMPT_MESSAGE);
 
         const btn = document.getElementById("goButton");
         if (btn) btn.innerHTML = GO_BUTTON_MESSAGE;
+        console.log(GO_BUTTON_MESSAGE);
     }
 }
 
