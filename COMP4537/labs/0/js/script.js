@@ -155,6 +155,9 @@ class ButtonManager
         {
             // Selects random colour by randomly selecting hsl values
             const color = `hsl(${Math.floor(Math.random() * 360)}, 100%, 60%)`;
+            // ** 360 corresponds to the degree rotation of the hue on the color wheel
+            // 100% is the saturation, and 60% is the lightness
+
             colors.push(color);
         }
 
