@@ -175,10 +175,10 @@ class ButtonManager
             const row = Math.floor(i / buttonsPerRow);
 
             // 1em of horizontal padding
-            let locX = 1 + (column * (BUTTON_WIDTH + 1));
+            let locX = BUTTON_PADDING_X + (column * (BUTTON_WIDTH + 1));
 
             // 5 ems of vertical padding
-            let locY = 5 + (row * (BUTTON_HEIGHT + 1));
+            let locY = BUTTON_PADDING_Y + (row * (BUTTON_HEIGHT + 1));
 
             // Finally, create the button with all the calculated data :)
             const button = new Button(locX,
