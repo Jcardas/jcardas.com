@@ -387,12 +387,12 @@ class GameManager
             this.registerTimeout(() =>
             {
                 this.buttonManager.scrambleButtons();
-            }, initialDelay + (i * 2000)); // Only start scrambling after
+            }, initialDelay + (i * 1000)); // Only start scrambling after
             // the initial n seconds of delay
         }
 
         // Determine the total time that the scrambling will take:
-        const totalTime = initialDelay + (numButtons * 2000);
+        const totalTime = initialDelay + (numButtons * 1000);
 
         // Once the buttons have all been shuffled, hide all the numbers,
         // and allow the user to click them.
