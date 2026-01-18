@@ -1,0 +1,36 @@
+#navContainer, footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 12em;
+    align-items: center;
+    border: black solid 1px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#footer {
+    width: 4em;
+}
+
+.nav-button {
+    text-decoration: none;
+    background: #0069d9;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: block;
+}
+
+.nav-button:hover {
+    background: #72c2fa;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
