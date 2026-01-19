@@ -53,8 +53,8 @@ class NavBar
     {
         // store all the buttons in an array
         const buttons = [
-            new NavButton("Writer", "writer.html"),
-            new NavButton("Reader", "reader.html")
+            new NavButton(messages.WRITER_BUTTON, "writer.html"),
+            new NavButton(messages.READER_BUTTON, "reader.html")
         ]
 
         // Append the buttons to the navbar container
@@ -83,7 +83,7 @@ class Footer
     {
         // Array of buttons (Just one for now, for this lab)
         const buttons = [
-            new NavButton("Back", "index.html")
+            new NavButton(messages.BACK_BUTTON, "index.html")
         ]
 
         // Append the buttons to the parent container
@@ -173,7 +173,7 @@ class UI
     {
         const addButton = document.createElement("button");
         addButton.className = "add-button";
-        addButton.innerText = "Add Note";
+        addButton.innerText = messages.ADD_NOTE_BUTTON;
 
         addButton.onclick = () =>
         {
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () =>
 
         const ui = new UI(mode);
 
-        window.addEventListener('notesUpdated', () =>
+        window.addEventListener(consts.NOTES_UPDATED_KEY, () =>
         {
             ui.refreshNotes(mode)
         })

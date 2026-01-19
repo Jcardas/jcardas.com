@@ -4,6 +4,7 @@
 // Description: This file contains the Note and NoteManager classes for lab 1.
 
 import {consts} from "../lang/consts/consts.js";
+import {messages} from "../lang/messages/en/user";
 
 /**
  * Note class represents a single note in the application.
@@ -62,7 +63,7 @@ export class Note
             // The button to remove the note
             const removeButton = document.createElement("button");
             removeButton.classList.add("remove-button");
-            removeButton.textContent = "Remove";
+            removeButton.textContent = messages.REMOVE_BUTTON;
 
             // Onclick event to remove the note from the screen and storage.
             removeButton.onclick = () =>
@@ -129,7 +130,7 @@ export class NoteManager
     {
         // Since the browser can only store strings, JSON.parse converts raw JSON
         // back into an array for use
-        const storedNotes = JSON.parse(localStorage.getItem("notes"));
+        const storedNotes = JSON.parse(localStorage.getItem(consts.NOTES_STORAGE_KEY));
         if (storedNotes)
         {
             // the .map method loops through the raw data and feeds each JSON
@@ -162,7 +163,7 @@ export class NoteManager
         // Finally, the savable data array is converted to a string for JSON storage
         // (since JSON can only store strings)
         // and saved to local storage.
-        localStorage.setItem("notes", JSON.stringify(savableNotes));
+        localStorage.setItem(consts.NOTES_STORAGE_KEY, JSON.stringify(savableNotes));
     }
 
     /**
@@ -233,7 +234,7 @@ export class NoteManager
 
                 // This dispatches a custom event to notify the UI to refresh notes
                 // It's used to refresh the notes displayed on the screen when in reading mode.
-                window.dispatchEvent(new CustomEvent("notesUpdated"));
+                window.dispatchEvent(new CustomEvent(consts.NOTES_UPDATED_KEY));
             }, interval);
         } else if (mode === consts.WRITING_MODE)
         {

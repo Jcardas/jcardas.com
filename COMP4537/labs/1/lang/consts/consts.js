@@ -6,7 +6,10 @@ const consts = {
     READING_MODE: "reading",
     WRITING_MODE: "writing",
 
-    SYNC_INTERVAL_MS: 2000
+    SYNC_INTERVAL_MS: 2000,
+
+    NOTES_STORAGE_KEY: "notes",
+    NOTES_UPDATED_KEY: "notesUpdated"
 }
 
 export { consts };

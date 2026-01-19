@@ -4,7 +4,12 @@
 
 const messages = {
     LAST_UPDATED_LABEL: "Updated At: ",
-    LAST_STORED_LABEL: "Stored At: "
+    LAST_STORED_LABEL: "Stored At: ",
+    WRITER_BUTTON: "Writer",
+    READER_BUTTON: "Reader",
+    BACK_BUTTON: "Back",
+    ADD_NOTE_BUTTON: "Add Note",
+    REMOVE_BUTTON: "Remove"
 }
 
 export { messages };
