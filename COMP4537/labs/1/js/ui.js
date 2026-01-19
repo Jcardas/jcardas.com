@@ -1,9 +1,16 @@
+// Written by: Justin Cardas
+// Date: 2026-01-16
+// Other contributors: Gemini 3-pro (https://gemini.google.com)
+// Description: This file contains the UI class that builds the user interface for lab 1.
+
 // Import note logic from notes.js
 import {Note, NoteManager} from './notes.js';
 import { messages } from '../lang/messages/en/user.js';
+import { consts } from '../lang/consts/consts.js';
 
 /**
  * NavButton Class.
+ * Used to create navigation buttons for the page.
  */
 class NavButton
 {
@@ -16,7 +23,7 @@ class NavButton
     /**
      * Returns the completed navButton object
      */
-    display()
+    getElement()
     {
         const button = document.createElement("a");
         button.innerText = this.title;
@@ -27,6 +34,10 @@ class NavButton
     }
 }
 
+/**
+ * The NavBar class builds the navigation bar at the top of the page.
+ * (It contains buttons to navigate between Writer and Reader pages)
+ */
 class NavBar
 {
     constructor(targetElement)
@@ -49,11 +60,15 @@ class NavBar
         // Append the buttons to the navbar container
         buttons.forEach(button =>
         {
-            this.container.appendChild(button.display());
+            this.container.appendChild(button.getElement());
         })
     }
 }
 
+/**
+ * The Footer class builds the footer section of the page.
+ * (Currently, it only contains a "Back" button)
+ */
 class Footer
 {
     constructor(targetElement)
@@ -74,22 +89,27 @@ class Footer
         // Append the buttons to the parent container
         buttons.forEach(button =>
         {
-            this.container.appendChild(button.display());
+            this.container.appendChild(button.getElement());
         })
     }
 }
 
 /**
- * Renders all the UI for the page, including navigation.
+ * Builds all the UI for the page, including navigation.
  */
 class UI
 {
-    constructor()
+    constructor(mode)
     {
-        this.init() // Initialization logic, basically this is called when UI is instantiated.
+        this.init(mode) // Initialization logic, passes in the mode (Reading/Writing)
     }
 
-    init()
+    /**
+     * Initializes the UI components of the page.
+     *
+     * @param mode - The mode of the page (Reading or Writing)
+     */
+    init(mode)
     {
         const navContainer = document.getElementById("navContainer");
 
@@ -98,19 +118,9 @@ class UI
             new NavBar(navContainer);
         }
 
-        // Update the last updated message every two seconds
-        this.updateTimeDisplay()
-        setInterval(() => this.updateTimeDisplay(), 2000); // 2000ms = 2s
+        this.updateTimeDisplay();
 
-        const noteContainer = document.getElementById("noteContainer");
-
-        const mode = noteContainer?.className; // "reading" or "writing"
-
-        if (noteContainer)
-        {
-            this.populateNoteContainer(noteContainer, mode);
-        }
-
+        this.refreshNotes(mode);
 
         const footerContainer = document.getElementById("footer");
 
@@ -121,35 +131,42 @@ class UI
     }
 
     /**
-     * Displays notes in the given container based on the mode.
-     * @param noteContainer
-     * @param mode - "reading" or "writing"
+     * Refreshes the notes displayed on the page based on the current mode (reading or writing).
+     *
+     * Method made in collaboration with Gemini 3-pro (https://gemini.google.com)
+     * (I previously had 3 different methods, Gemini helped condense it into one)
+     * @param mode - The mode of the page (Reading or Writing)
      */
-    populateNoteContainer(noteContainer, mode)
+    refreshNotes(mode)
     {
-        if (mode === "writing")
+        const noteContainer = document.getElementById("noteContainer");
+
+        if (noteContainer)
         {
-            this.displayNotes(noteContainer, mode);
-            this.displayAddNoteButton(noteContainer);
-        }
-        else if (mode === "reading")
-        {
-            this.displayNotes(noteContainer, mode);
+            // Clears the container to prevent duplicates
+            noteContainer.innerHTML = "";
+
+            // Fetches and creates the note elements from NoteManager
+            const notes = NoteManager.getNotesFromLocalStorage(mode);
+            notes.forEach(note =>
+            {
+                noteContainer.appendChild(note.getElement());
+            });
+
+            // Adds the "Add Note" button, but only in Writing Mode
+            if (mode === consts.WRITING_MODE)
+            {
+                this.displayAddNoteButton(noteContainer);
+            }
         }
     }
 
-    displayNotes(noteContainer, mode)
-    {
-        // Get the notes from the local storage in the browser
-        const notes = NoteManager.loadNotesFromLocalStorage(mode);
-
-        // Display each of the notes in the ui
-        notes.forEach(note =>
-        {
-            noteContainer.appendChild(note.getElement());
-        });
-    }
-
+    /**
+     * Displays the "Add Note" button in the note container.
+     * Specifically places the button at the end of the notes list.
+     * (Writing mode only)
+     * @param noteContainer
+     */
     displayAddNoteButton(noteContainer)
     {
         const addButton = document.createElement("button");
@@ -165,6 +182,10 @@ class UI
         noteContainer.appendChild(addButton);
     }
 
+    /**
+     * Updates the time display showing when notes were last updated.
+     * (Used in both Reading and Writing modes)
+     */
     updateTimeDisplay()
     {
         const lastUpdated = document.getElementById("lastUpdated");
@@ -177,9 +198,38 @@ class UI
     }
 }
 
+/**
+ * Exported function to get the mode of the page (Reading or writing)
+ * @return {string|null} - The mode of the page
+ */
+function getPageMode()
+{
+    const noteContainer = document.getElementById("noteContainer");
+
+    if (noteContainer)
+    {
+        return noteContainer.getAttribute("data-mode");
+    }
+}
+
+/**
+ * Event listener for when the DOM content is loaded.
+ * Initializes the UI and starts syncing notes.
+ */
 document.addEventListener("DOMContentLoaded", () =>
     {
-        const ui = new UI();
+        const mode = getPageMode();
+
+        const ui = new UI(mode);
+
+        window.addEventListener('notesUpdated', () =>
+        {
+            ui.refreshNotes(mode)
+        })
+
+        NoteManager.startSyncingNotes(consts.SYNC_INTERVAL_MS, mode);
+
+        setInterval(() => this.updateTimeDisplay(), consts.SYNC_INTERVAL_MS);
     }
 )
 

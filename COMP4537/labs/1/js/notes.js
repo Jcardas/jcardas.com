@@ -1,3 +1,10 @@
+// Written by: Justin Cardas
+// Date: 2026-01-16
+// Other contributors: Gemini 3-pro (https://gemini.google.com)
+// Description: This file contains the Note and NoteManager classes for lab 1.
+
+import { consts } from "../lang/consts/consts.js";
+
 export class Note
 {
     constructor(id = Date.now(), text = "", mode)
@@ -28,11 +35,11 @@ export class Note
         noteContainer.appendChild(noteText);
 
         // Check the mode to see if we are reading or writing
-        if (mode === "reading")
+        if (mode === consts.READING_MODE)
         {
             noteText.setAttribute("readonly", "readonly");
 
-        } else if (mode === "writing")
+        } else if (mode === consts.WRITING_MODE)
         {
             noteText.removeAttribute("readonly");
             // The button to remove the note
@@ -79,7 +86,7 @@ export class NoteManager
     static notes = [];
     static lastUpdated = Date.now();
 
-    static loadNotesFromLocalStorage(mode)
+    static getNotesFromLocalStorage(mode)
     {
         // Consulted Gemini 3 pro (https://gemini.google.com) for steps in parsing json data.
         // All comments are written by hand by me (Justin C)
@@ -125,6 +132,7 @@ export class NoteManager
         {
             noteToUpdate.text = text; // Updates the text in the textArea
             this.saveNotesToLocalStorage();
+
             this.updateLastUpdated();
         }
     }
@@ -146,5 +154,25 @@ export class NoteManager
     static updateLastUpdated()
     {
         this.lastUpdated = Date.now(); // Mark when the last update was made
+    }
+
+    static startSyncingNotes(interval, mode)
+    {
+        if (mode === consts.READING_MODE)
+        {
+            setInterval(() => {
+                this.getNotesFromLocalStorage(mode);
+
+                this.updateLastUpdated();
+                window.dispatchEvent(new CustomEvent("notesUpdated"));
+            }, interval);
+        }
+        else if (mode === consts.WRITING_MODE)
+        {
+            setInterval(() => {
+                this.saveNotesToLocalStorage();
+                this.updateLastUpdated();
+            }, interval);
+        }
     }
 }
