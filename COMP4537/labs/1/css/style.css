@@ -4,9 +4,18 @@
     justify-content: space-between;
     width: 12em;
     align-items: center;
-    border: black solid 1px;
-    border-radius: 10px;
     padding: 5px;
+}
+
+#topBar
+{
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
 }
 
 #footer {
@@ -33,4 +42,56 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+}
+
+/* Note container box for all notes */
+#noteContainer {
+    border: black solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px 0;
+    width: 90%;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+/* Individual note entry styling */
+.note-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: black solid 1px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #f9f9f9;
+}
+
+/* Individual note text styling */
+.note-text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Remove button */
+.remove-button {
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-button {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
 }

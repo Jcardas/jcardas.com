@@ -1,6 +1,6 @@
 // Import note logic from notes.js
 import {Note, NoteManager} from './notes.js';
-import {messages} from '../lang/messages/en/user.js';
+import { messages } from '../lang/messages/en/user.js';
 
 /**
  * NavButton Class.
@@ -109,6 +109,7 @@ class UI
             this.displayAddNoteButton(noteContainer);
         }
 
+
         const footerContainer = document.getElementById("footer");
 
         if (footerContainer)
@@ -138,7 +139,7 @@ class UI
         addButton.onclick = () => {
             const newNote = new Note();
             NoteManager.addNote(newNote);
-            noteContainer.appendChild(newNote.getElement());
+            noteContainer.insertBefore(newNote.getElement(), addButton);
         };
 
         noteContainer.appendChild(addButton);
@@ -150,7 +151,7 @@ class UI
         if (lastUpdated)
         {
             const time = new Date(NoteManager.lastUpdated);
-            lastUpdated.innerText = time.toLocaleTimeString();
+            lastUpdated.innerText = messages.LAST_UPDATED_LABEL + time.toLocaleTimeString();
 
         }
     }
