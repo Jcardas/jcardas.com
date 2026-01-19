@@ -103,10 +103,12 @@ class UI
         setInterval(() => this.updateTimeDisplay(), 2000); // 2000ms = 2s
 
         const noteContainer = document.getElementById("noteContainer");
+
+        const mode = noteContainer?.className; // "reading" or "writing"
+
         if (noteContainer)
         {
-            this.displayNotes(noteContainer);
-            this.displayAddNoteButton(noteContainer);
+            this.populateNoteContainer(noteContainer, mode);
         }
 
 
@@ -118,10 +120,28 @@ class UI
         }
     }
 
-    displayNotes(noteContainer)
+    /**
+     * Displays notes in the given container based on the mode.
+     * @param noteContainer
+     * @param mode - "reading" or "writing"
+     */
+    populateNoteContainer(noteContainer, mode)
+    {
+        if (mode === "writing")
+        {
+            this.displayNotes(noteContainer, mode);
+            this.displayAddNoteButton(noteContainer);
+        }
+        else if (mode === "reading")
+        {
+            this.displayNotes(noteContainer, mode);
+        }
+    }
+
+    displayNotes(noteContainer, mode)
     {
         // Get the notes from the local storage in the browser
-        const notes = NoteManager.loadNotesFromLocalStorage();
+        const notes = NoteManager.loadNotesFromLocalStorage(mode);
 
         // Display each of the notes in the ui
         notes.forEach(note =>

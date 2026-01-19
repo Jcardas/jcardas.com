@@ -1,14 +1,14 @@
 export class Note
 {
-    constructor(id = Date.now(), text = "")
+    constructor(id = Date.now(), text = "", mode)
     {
         this.id = id;
         this.text = text;
 
-        this.element = this.createNoteElement();
+        this.element = this.createNoteElement(mode);
     }
 
-    createNoteElement()
+    createNoteElement(mode)
     {
         const noteContainer = document.createElement("div");
         noteContainer.classList.add("note-container");
@@ -25,19 +25,27 @@ export class Note
             NoteManager.updateNote(this.id, noteText.value);
         };
 
-        // The button to remove the note
-        const removeButton = document.createElement("button");
-        removeButton.classList.add("remove-button");
-        removeButton.textContent = "Remove";
-
-        removeButton.onclick = () =>
-        {
-            this.removeNote();
-        }
-
         noteContainer.appendChild(noteText);
-        noteContainer.appendChild(removeButton);
 
+        // Check the mode to see if we are reading or writing
+        if (mode === "reading")
+        {
+            noteText.setAttribute("readonly", "readonly");
+
+        } else if (mode === "writing")
+        {
+            noteText.removeAttribute("readonly");
+            // The button to remove the note
+            const removeButton = document.createElement("button");
+            removeButton.classList.add("remove-button");
+            removeButton.textContent = "Remove";
+
+            removeButton.onclick = () =>
+            {
+                this.removeNote();
+            }
+            noteContainer.appendChild(removeButton);
+        }
         return noteContainer;
     }
 
@@ -71,7 +79,7 @@ export class NoteManager
     static notes = [];
     static lastUpdated = Date.now();
 
-    static loadNotesFromLocalStorage()
+    static loadNotesFromLocalStorage(mode)
     {
         // Consulted Gemini 3 pro (https://gemini.google.com) for steps in parsing json data.
         // All comments are written by hand by me (Justin C)
@@ -79,11 +87,11 @@ export class NoteManager
         // Since the browser can only store strings, JSON.parse converts raw JSON
         // back into an array for use
         const storedNotes = JSON.parse(localStorage.getItem("notes"));
-        if(storedNotes)
+        if (storedNotes)
         {
             // the .map method loops through the raw data and feeds each JSON
             // entry into the Note object constructor.
-            this.notes = storedNotes.map(note => new Note(note.id, note.text));
+            this.notes = storedNotes.map(note => new Note(note.id, note.text, mode));
         }
 
         // Finally returns an array of notes parsed from the JSON
@@ -113,7 +121,8 @@ export class NoteManager
         // Finds the specific note object in the array
         const noteToUpdate = this.notes.find(note => note.id === id);
 
-        if (noteToUpdate) {
+        if (noteToUpdate)
+        {
             noteToUpdate.text = text; // Updates the text in the textArea
             this.saveNotesToLocalStorage();
             this.updateLastUpdated();
