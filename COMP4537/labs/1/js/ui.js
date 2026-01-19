@@ -5,8 +5,8 @@
 
 // Import note logic from notes.js
 import {Note, NoteManager} from './notes.js';
-import { messages } from '../lang/messages/en/user.js';
-import { consts } from '../lang/consts/consts.js';
+import {messages} from '../lang/messages/en/user.js';
+import {consts} from '../lang/consts/consts.js';
 
 /**
  * NavButton Class.
@@ -118,7 +118,7 @@ class UI
             new NavBar(navContainer);
         }
 
-        this.updateTimeDisplay();
+        this.updateTimeDisplay(mode);
 
         this.refreshNotes(mode);
 
@@ -159,6 +159,8 @@ class UI
                 this.displayAddNoteButton(noteContainer);
             }
         }
+
+        this.updateTimeDisplay(mode);
     }
 
     /**
@@ -173,7 +175,8 @@ class UI
         addButton.className = "add-button";
         addButton.innerText = "Add Note";
 
-        addButton.onclick = () => {
+        addButton.onclick = () =>
+        {
             const newNote = new Note();
             NoteManager.addNote(newNote);
             noteContainer.insertBefore(newNote.getElement(), addButton);
@@ -186,20 +189,40 @@ class UI
      * Updates the time display showing when notes were last updated.
      * (Used in both Reading and Writing modes)
      */
-    updateTimeDisplay()
+    updateTimeDisplay(mode)
     {
+        // Get the last updated element
         const lastUpdated = document.getElementById("lastUpdated");
-        if (lastUpdated)
-        {
-            const time = new Date(NoteManager.lastUpdated);
-            lastUpdated.innerText = messages.LAST_UPDATED_LABEL + time.toLocaleTimeString();
+        if (!lastUpdated) return;
 
+        // Get the last updated time from NoteManager
+        const last = NoteManager.getLastUpdated();
+
+        // If there's no last updated time, clear the display
+        if (!last)
+        {
+            lastUpdated.innerText = "";
+            return;
+        }
+
+        // Convert the timestamp to a Date object
+        const time = new Date(last);
+
+        // Update the display based on the mode
+        if (mode === consts.READING_MODE)
+        {
+            // Display "Last Updated" for reading mode
+            lastUpdated.innerText = messages.LAST_UPDATED_LABEL + time.toLocaleTimeString();
+        } else
+        {
+            // Display "Last Stored" for writing mode
+            lastUpdated.innerText = messages.LAST_STORED_LABEL + time.toLocaleTimeString();
         }
     }
 }
 
 /**
- * Exported function to get the mode of the page (Reading or writing)
+ * Function to get the mode of the page (Reading or writing)
  * @return {string|null} - The mode of the page
  */
 function getPageMode()
@@ -229,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () =>
 
         NoteManager.startSyncingNotes(consts.SYNC_INTERVAL_MS, mode);
 
-        setInterval(() => this.updateTimeDisplay(), consts.SYNC_INTERVAL_MS);
+        setInterval(() => ui.updateTimeDisplay(mode), consts.SYNC_INTERVAL_MS);
     }
 )
 
