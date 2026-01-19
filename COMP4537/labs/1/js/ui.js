@@ -177,7 +177,7 @@ class UI
 
         addButton.onclick = () =>
         {
-            const newNote = new Note();
+            const newNote = new Note(Date.now(), "", consts.WRITING_MODE);
             NoteManager.addNote(newNote);
             noteContainer.insertBefore(newNote.getElement(), addButton);
         };

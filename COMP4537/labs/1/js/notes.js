@@ -4,7 +4,7 @@
 // Description: This file contains the Note and NoteManager classes for lab 1.
 
 import {consts} from "../lang/consts/consts.js";
-import {messages} from "../lang/messages/en/user";
+import {messages} from "../lang/messages/en/user.js";
 
 /**
  * Note class represents a single note in the application.
