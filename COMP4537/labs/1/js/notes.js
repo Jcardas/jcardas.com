@@ -134,11 +134,19 @@ export class NoteManager
         // Since the browser can only store strings, JSON.parse converts raw JSON
         // back into an array for use
         const storedNotes = JSON.parse(localStorage.getItem(consts.NOTES_STORAGE_KEY));
+        // The format the data is retrieved in is as follows:
+        // [
+        //     {
+        //         "id": 1672531199000,
+        //         "text": "This is a sample note."
+        //     },
+        //      ...
+        // ]
         if (storedNotes)
         {
             // the .map method loops through the raw data and feeds each JSON
             // entry into the Note object constructor.
-            this.notes = storedNotes.map(note => new Note(note.id, note.text, mode));
+            this.notes = storedNotes.map(note => new Note(note.id, note.text, mode)); // also passes mode
         }
 
         // Finally returns an array of notes parsed from the JSON
