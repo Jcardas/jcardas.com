@@ -15,6 +15,9 @@ import {messages} from "../lang/messages/en/user.js";
  */
 export class Note
 {
+    // Date.now() is used to generate a unique ID if none is provided,
+    // Date.now() returns the number of milliseconds elapsed since January 1, 1970 at 00:00:00 UTC
+    // e.g: 1672531199000
     constructor(id = Date.now(), text = "", mode)
     {
         this.id = id;

@@ -139,8 +139,10 @@ class UI
      */
     refreshNotes(mode)
     {
+        // The container where notes will be displayed
         const noteContainer = document.getElementById("noteContainer");
 
+        // Validate the container exists
         if (noteContainer)
         {
             // Clears the container to prevent duplicates
@@ -150,16 +152,20 @@ class UI
             const notes = NoteManager.getNotesFromLocalStorage(mode);
             notes.forEach(note =>
             {
+                // Appends each note element to the container
                 noteContainer.appendChild(note.getElement());
             });
 
             // Adds the "Add Note" button, but only in Writing Mode
             if (mode === consts.WRITING_MODE)
             {
+                // Display the "Add Note" button
                 this.displayAddNoteButton(noteContainer);
             }
         }
 
+        // Update the time display after refreshing notes
+        // (to show last updated/stored time)
         this.updateTimeDisplay(mode);
     }
 
