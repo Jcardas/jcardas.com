@@ -1,0 +1,115 @@
+:root{
+        --bg-1: #292f33;
+        --bg-2: #1f2629;
+        --card-bg: rgba(255,255,255,0.04);
+        --muted: #cfcfcf;
+        --accent: #4aa3ff;
+        --done-start: #72c2fa;
+        --done-end: #4aa8f8;
+        --done-border: #0069d9;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 50px;
+        margin: 0;
+        background: linear-gradient(135deg, var(--bg-1), var(--bg-2));
+        color: #f1f1f1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1 {
+        color: #ffffff;
+        margin: 0 0 20px 0;
+        font-size: 2rem;
+        letter-spacing: 0.2px;
+    }
+
+    .title {
+        font-size: 1.25rem;
+        margin-bottom: 16px;
+        color: #e9eef8;
+    }
+
+    /* Grid wrapper for lab buttons/cards */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 18px;
+        max-width: 960px;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    /* Lab button / card */
+    .lab-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 18px 16px;
+        background: var(--card-bg);
+        color: var(--muted);
+        text-decoration: none;
+        border: 1px solid rgba(255,255,255,0.06);
+        border-radius: 10px;
+        font-weight: 600;
+        transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease, color 180ms ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+        min-height: 68px;
+        text-align: center;
+    }
+
+    /* Hover / focus */
+    .lab-btn:hover,
+    .lab-btn:focus {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+        color: #ffffff;
+        outline: none;
+    }
+
+    .lab-btn:focus-visible {
+        box-shadow: 0 0 0 4px rgba(74,163,255,0.18), 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Completed lab style */
+    .lab-btn.done {
+        background: linear-gradient(135deg, var(--done-start), var(--done-end));
+        border-color: var(--done-border);
+        color: #06263b;
+        box-shadow: 0 6px 18px rgba(34,100,167,0.18);
+    }
+
+    .lab-btn.done:hover,
+    .lab-btn.done:focus {
+        transform: translateY(-6px);
+        color: #ffffff;
+        box-shadow: 0 18px 40px rgba(34,100,167,0.28);
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 420px) {
+        body {
+            padding: 24px;
+        }
+        .grid {
+            gap: 12px;
+        }
+        .lab-btn {
+            padding: 14px;
+            min-height: 60px;
+            font-size: 0.95rem;
+        }
+    }

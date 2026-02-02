@@ -5,62 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>jcardas - Lab Portal</title>
-    <style>
-        body {
-            font-family: system-ui, -apple-system, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px;
-            background-color: #f4f4f9;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 30px;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            max-width: 800px;
-            width: 100%;
-        }
-        .lab-btn {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            background-color: white;
-            color: #232323;
-            text-decoration: none;
-            border: 2px solid #d90007;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: all 0.2s ease;
-        }
-        .lab-btn.done:hover {
-            background-color: #0069d9;
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        /* Style specifically for Lab 0 since it is done */
-        .lab-btn.done {
-            background-color: #72c2fa;
-            border-color: #0069d9;
-        }
-    </style>
+
+    <link rel="stylesheet" href="css/labs-styling.css">
 </head>
 <body>
 
-<h1>Course Assignments</h1>
+<h1 class="title">4537 Course Assignments</h1>
 
 <div class="grid">
     <a href="/COMP4537/labs/0/" class="lab-btn done">Lab 0</a>
 
     <a href="/COMP4537/labs/1/" class="lab-btn done">Lab 1</a>
     <a href="/COMP4537/labs/2/" class="lab-btn">Lab 2</a>
-    <a href="/COMP4537/labs/3/" class="lab-btn">Lab 3</a>
+    <a href="/COMP4537/labs/3/" class="lab-btn done">Lab 3</a>
     <a href="/COMP4537/labs/4/" class="lab-btn">Lab 4</a>
     <a href="/COMP4537/labs/5/" class="lab-btn">Lab 5</a>
     <a href="/COMP4537/labs/6/" class="lab-btn">Lab 6</a>
