@@ -1,3 +1,5 @@
+//UPDATED
+
 // server1/client-script.js
 const insertButton = document.getElementById('insert-btn');
 const submitButton = document.getElementById('submit-query');
@@ -32,7 +34,7 @@ submitButton.addEventListener('click', () =>
 
 async function sendInsert()
 {
-    const res = await fetch(`http://localhost:${portNumber}/insert`, {
+    const res = await fetch(`/api/insert`, {
         method: 'POST',
         headers: {'Content-Type': 'text/plain'},
         body: 'insert-default-data'
@@ -52,7 +54,7 @@ async function sendInsert()
 
 async function sendQuery(sql)
 {
-    const url = `http://localhost:${portNumber}/query?sql=${encodeURIComponent(sql)}`;
+    const url = `/api/query?sql=${encodeURIComponent(sql)}`;
     const res = await fetch(url, {method: 'GET'});
 
     const contentType = res.headers.get('content-type') || '';
