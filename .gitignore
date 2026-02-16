@@ -7,5 +7,8 @@
 /dataSources/
 /dataSources.local.xml
 
+# Environment variables
+.env
+
 # idea folder
 /.idea/
