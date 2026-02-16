@@ -61,6 +61,7 @@ const server = http.createServer((req, res) => {
             ) ENGINE=InnoDB;
         `;
 
+        // SQL to insert default data (4 rows as said in lab outline)
         const insertDefaultData = `
             INSERT INTO patient (name, dateOfBirth) VALUES 
             ('Sara Brown', '1901-01-01'), 
@@ -70,12 +71,14 @@ const server = http.createServer((req, res) => {
         `;
 
         // USE ADMIN CONNECTION
+        // First, ensure the table exists. If it already exists, this will do nothing because of "IF NOT EXISTS".
         adminConn.query(createTableSQL, (err) => {
             if (err) {
                 res.writeHead(500);
                 return res.end("Error creating table: " + err.message);
             }
 
+            // After ensuring the table exists, insert the default data
             adminConn.query(insertDefaultData, (err, result) => {
                 if (err) {
                     res.writeHead(500);
@@ -95,6 +98,7 @@ const server = http.createServer((req, res) => {
         // e.g. /query?sql=SELECT * FROM patient
         const userQuery = parsedUrl.query.sql;
 
+        // If no SQL query is provided, return an error
         if (!userQuery) {
             res.writeHead(400);
             return res.end("No SQL query provided");
@@ -113,12 +117,13 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify(results));
         });
-    } else {
+    } else { // If the route is not recognized, return 404 Not Found
         res.writeHead(404);
         res.end("Not Found");
     }
 });
 
+// Start the server and listen on the specified port
 server.listen(portNumber, () => {
     console.log("Server running on port:" + portNumber);
 });
