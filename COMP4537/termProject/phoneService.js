@@ -1,20 +1,41 @@
-// Download the helper library from https://www.twilio.com/docs/node/install
-const twilio = require("twilio"); // Or, for ESM: import twilio from "twilio";
+// phoneService.js — browser-side only
+// Sends a POST request to the backend which handles Twilio.
 
-// Find your Account SID and Auth Token at twilio.com/console
-// and set the environment variables. See http://twil.io/secure
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = twilio(accountSid, authToken);
+const sendButton = document.getElementById("send-button");
 
-async function createMessage() {
-    const message = await client.messages.create({
-        body: "This is the ship that made the Kessel Run in fourteen parsecs?",
-        from: "+---",
-        to: "+---",
+sendButton.addEventListener("click", () => {
+    const toPhoneNumber = document.getElementById("to-phone-number").value.trim();
+    const messageBody = document.getElementById("message-body").value.trim();
+
+    if (!toPhoneNumber) {
+        alert("Please enter a phone number.");
+        return;
+    }
+    if (!messageBody) {
+        alert("Please enter a message.");
+        return;
+    }
+
+    sendMessage(toPhoneNumber, messageBody).catch(err => {
+        console.error("Error sending message:", err);
+        alert("Network error: " + err.message);
+    });
+});
+
+async function sendMessage(toPhoneNumber, messageBody) {
+    const res = await fetch("http://localhost:3002/api/send-sms", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ to: toPhoneNumber, body: messageBody })
     });
 
-    console.log(message.body);
-}
+    const text = await res.text();
 
-createMessage();
+    if (res.ok) {
+        alert("Message sent!");
+        console.log("Response:", text);
+    } else {
+        alert(`Error (${res.status}): ${text}`);
+        console.error("Send error:", text);
+    }
+}
